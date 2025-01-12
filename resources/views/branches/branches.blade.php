@@ -7,6 +7,7 @@
 <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+
 @section('title')
 الاقسام
 @stop
@@ -26,42 +27,44 @@
 @endsection
 @section('content')
 
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+
+
+<!-- عرض التنبيهات -->
 
 @if (session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{ session()->get('Add') }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+<div class="alert alert-success text-center" role="alert" id="auto-dismiss-alert"
+    style="display: inline-block; padding: 5px; margin: 10px auto;">
+    <strong>{{ session()->get('edit') }}</strong>
 </div>
 @endif
 
 @if (session()->has('delete'))
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<div class="alert alert-success text-center" role="alert" id="auto-dismiss-alert"
+    style="display: inline-block; padding: 5px; margin: 10px auto;">
     <strong>{{ session()->get('delete') }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
 </div>
 @endif
 
 @if (session()->has('edit'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+<div class="alert alert-success text-center" role="alert" id="auto-dismiss-alert"
+    style="display: inline-block; padding: 5px; margin: 10px auto;">
     <strong>{{ session()->get('edit') }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
 </div>
 @endif
+
+@if(session('error'))
+<div class="alert alert-danger text-center" role="alert" id="auto-dismiss-alert"
+    style="display: inline-block; padding: 5px; margin: 10px auto;">
+    <strong>{{ session()->get('error') }}</strong>
+</div>
+@endif
+
+
+<!--  التنبيهات -->
+
+
+
+
 <!-- row -->
 <div class="row">
 
@@ -69,13 +72,13 @@
     <div class="col-xl-12">
         <div class="card mg-b-20">
             <div class="card-header pb-0">
-                <div class="d-flex justify-content-between">
-                    @can('اضافة قسم')
-                    <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale"
-                        data-toggle="modal" href="#modaldemo8">اضافة قسم</a>
-                    @endcan
+
+                <!-- Add Button -->
+                <div>
+                    <a class="btn ripple btn-primary" data-toggle="modal" href="#modaldemo8">اضافة قسم</a>
                 </div>
 
+                <!-- List Items -->
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -121,7 +124,9 @@
     </div>
 
 
-    <!-- Add -->
+
+
+    <!-- Add Form -->
 
     <div class="modal" id="modaldemo8">
         <div class="modal-dialog" role="document">
@@ -152,11 +157,10 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 
-    <!-- edit -->
+    <!-- edit Form -->
 
     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -170,8 +174,13 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="sections/update" method="post" autocomplete="off">
-                        {{ method_field('patch') }}
+                    <form action="branches/update" method="post" autocomplete="off">
+
+                        <!-- ارسال الداتا -->
+                        {{ method_field('PUT') }}
+                        <!-- ارسال الداتا -->
+
+
                         {{ csrf_field() }}
                         <div class="form-group">
                             <input type="hidden" name="id" id="id" value="">
@@ -192,7 +201,7 @@
         </div>
     </div>
 
-    <!-- delete -->
+    <!-- delete Form -->
 
     <div class="modal" id="modaldemo9">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -201,8 +210,13 @@
                     <h6 class="modal-title">حذف القسم</h6><button aria-label="Close" class="close" data-dismiss="modal"
                         type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="sections/destroy" method="post">
-                    {{ method_field('delete') }}
+                <form action="branches/destroy" method="post">
+
+                    <!-- ارسال الداتا -->
+                    {{ method_field('DELETE') }}
+                    <!-- ارسال الداتا -->
+
+
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <p>هل انت متاكد من عملية الحذف ؟</p><br>
@@ -264,13 +278,33 @@
 
 <script>
     $('#modaldemo9').on('show.bs.modal', function(event) {
+
         var button = $(event.relatedTarget)
         var id = button.data('id')
         var branch_name = button.data('branch_name')
+
         var modal = $(this)
         modal.find('.modal-body #id').val(id);
         modal.find('.modal-body #branch_name').val(branch_name);
+
     })
 </script>
+
+
+
+
+<script>
+    const alertText = document.querySelector('#auto-dismiss-alert').innerText;
+
+    setTimeout(() => {
+        const alert = document.getElementById('auto-dismiss-alert');
+        if (alert) {
+            alert.classList.remove('show');
+            alert.classList.add('fade');
+        }
+    }, 8000);
+</script>
+
+
 
 @endsection
