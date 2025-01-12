@@ -1,15 +1,15 @@
 @extends('layouts.master2')
-
 @section('title')
-تسجيل الدخول - مورا سوفت للادارة القانونية
+تسجيل دخول - برنامج الفواتير
 @stop
-
 
 @section('css')
 <!-- Sidemenu-respoansive-tabs css -->
 <link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}"
     rel="stylesheet">
 @endsection
+
+
 @section('content')
 <div class="container-fluid">
     <div class="row no-gutter">
@@ -91,11 +91,15 @@
                     <img src="{{URL::asset('assets/img/media/login.png')}}"
                         class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
                 </div>
+
             </div>
         </div>
 
     </div>
 </div>
 @endsection
-@section('js')
+
+
+@section('j
+s')
 @endsection

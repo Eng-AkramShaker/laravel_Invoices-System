@@ -8,29 +8,29 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    body {
-        background: linear-gradient(135deg, #6a11cb, #2575fc);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-    }
+        body {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
 
-    .card {
-        background-color: rgba(0, 0, 0, 0.7);
-        border: none;
-        border-radius: 15px;
-    }
+        .card {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 15px;
+        }
 
-    .btn-primary {
-        background-color: #6a11cb;
-        border: none;
-    }
+        .btn-primary {
+            background-color: #6a11cb;
+            border: none;
+        }
 
-    .btn-primary:hover {
-        background-color: #2575fc;
-    }
+        .btn-primary:hover {
+            background-color: #2575fc;
+        }
     </style>
 </head>
 
