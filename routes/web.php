@@ -15,7 +15,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 
 Route::resource('/invoices', InvoicesController::class);
 
@@ -30,8 +30,3 @@ Route::resource('/branches', BranchesController::class);
 Route::get('test', function () {
     return view('aLL.modals');
 });
-Auth::routes();
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
