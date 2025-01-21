@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('css')
+
 <!-- Internal Data table css -->
 <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
 <link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
@@ -24,9 +25,10 @@
     </div>
 </div>
 <!-- breadcrumb -->
+
+
 @endsection
 @section('content')
-
 
 
 <!-- عرض التنبيهات -->
@@ -34,7 +36,7 @@
 @if (session()->has('Add'))
 <div class="alert alert-success text-center" role="alert" id="auto-dismiss-alert"
     style="display: inline-block; padding: 5px; margin: 10px auto;">
-    <strong>{{ session()->get('edit') }}</strong>
+    <strong>{{ session()->get('Add') }}</strong>
 </div>
 @endif
 
@@ -59,7 +61,6 @@
 </div>
 @endif
 
-
 <!--  التنبيهات -->
 
 
@@ -72,13 +73,13 @@
     <div class="col-xl-12">
         <div class="card mg-b-20">
             <div class="card-header pb-0">
-
                 <!-- Add Button -->
                 <div>
                     <a class="btn ripple btn-primary" data-toggle="modal" href="#modaldemo8">اضافة قسم</a>
                 </div>
 
                 <!-- List Items -->
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -105,13 +106,13 @@
                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                         data-id="{{ $x->id }}" data-branch_name="{{ $x->branch_name }}"
                                         data-description="{{ $x->description }}" data-toggle="modal"
-                                        href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
-
+                                        href="#exampleModal2" title="تعديل"><i class="las la-pen"></i>
+                                    </a>
 
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                         data-id="{{ $x->id }}" data-branch_name="{{ $x->branch_name }}"
-                                        data-toggle="modal" href="#modaldemo9" title="حذف"><i
-                                            class="las la-trash"></i></a>
+                                        data-toggle="modal" href="#modaldemo9" title="حذف"><i class="las la-trash"></i>
+                                    </a>
 
                                 </td>
                             </tr>
@@ -122,8 +123,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     <!-- Add Form -->
@@ -236,6 +235,7 @@
 
 
     <!-- row closed -->
+
 </div>
 <!-- Container closed -->
 </div>
@@ -263,6 +263,12 @@
 <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
 <script src="{{ URL::asset('assets/js/modal.js') }}"></script>
 
+
+
+
+<!-- edit -->
+
+
 <script>
     $('#exampleModal2').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
@@ -275,6 +281,8 @@
         modal.find('.modal-body #description').val(description);
     })
 </script>
+
+<!-- عرض الداتا داخل الفورم -->
 
 <script>
     $('#modaldemo9').on('show.bs.modal', function(event) {

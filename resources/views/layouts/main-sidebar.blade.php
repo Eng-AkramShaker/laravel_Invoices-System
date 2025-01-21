@@ -113,7 +113,7 @@ use Illuminate\Support\Facades\Auth;
                 </a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ url('/' . $page='branches') }}">الأقسام</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='mail-compose') }}">المنتجات</a></li>
+                    <li><a class="slide-item" href="{{ url('/' . $page='products') }}">المنتجات</a></li>
 
                 </ul>
             </li>

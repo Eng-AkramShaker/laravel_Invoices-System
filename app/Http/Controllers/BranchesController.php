@@ -87,7 +87,7 @@ class BranchesController extends Controller
         $branch->update([
             'branch_name' => $request->branch_name,
             'description' => $request->description,
-            'updated_by' => Auth::user()->name,
+            'Created_by' => Auth::user()->name,
         ]);
 
 
